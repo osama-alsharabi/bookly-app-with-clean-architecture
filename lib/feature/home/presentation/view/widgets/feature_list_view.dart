@@ -1,0 +1,54 @@
+import 'package:bookly_app_with_clean_architure/feature/home/presentation/view/widgets/feature_image_item.dart';
+import 'package:flutter/material.dart';
+
+class FeatureListView extends StatefulWidget {
+  const FeatureListView({super.key});
+
+  @override
+  State<FeatureListView> createState() => _FeatureListViewState();
+}
+
+class _FeatureListViewState extends State<FeatureListView> {
+  late PageController _pageController;
+  double _currentPage = 0.0;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController(viewportFraction: 0.45)
+      ..addListener(() {
+        setState(() {
+          _currentPage = _pageController.page!;
+        });
+      });
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: MediaQuery.sizeOf(context).height * 0.3,
+      child: PageView.builder(
+        itemCount: 10,
+        padEnds: false,
+        controller: _pageController,
+        itemBuilder: (context, index) {
+          double difference = index - _currentPage;
+          double paddingValue = difference.abs() * 10;
+          return Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: paddingValue.clamp(0.0, 15.0),
+              horizontal: 12,
+            ),
+            child: const FeatureImageItem(),
+          );
+        },
+      ),
+    );
+  }
+}
