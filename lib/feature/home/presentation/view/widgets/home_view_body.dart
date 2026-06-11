@@ -1,5 +1,5 @@
 import 'package:bookly_app_with_clean_architure/core/utils/app_style.dart';
-import 'package:bookly_app_with_clean_architure/feature/home/presentation/view/widgets/best_seller_item.dart';
+import 'package:bookly_app_with_clean_architure/feature/home/presentation/view/widgets/best_seller_list_view.dart';
 import 'package:bookly_app_with_clean_architure/feature/home/presentation/view/widgets/custom_app_bar.dart';
 import 'package:bookly_app_with_clean_architure/feature/home/presentation/view/widgets/feature_list_view.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +22,7 @@ class HomeViewBody extends StatelessWidget {
           child: Text("Best Seller", style: AppStyle.textStyle18SimeBold),
         ),
         SizedBox(height: 20),
-        BestSellerItem(),
+        BestSellerListView(),
       ],
     );
   }
