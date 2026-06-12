@@ -1,6 +1,6 @@
 import 'package:bookly_app_with_clean_architure/core/routes/app_router_config.dart';
 import 'package:bookly_app_with_clean_architure/core/utils/app_style.dart';
-import 'package:bookly_app_with_clean_architure/feature/home/presentation/view/widgets/feature_image_item.dart';
+import 'package:bookly_app_with_clean_architure/feature/home/presentation/view/widgets/custom_book_image.dart';
 import 'package:bookly_app_with_clean_architure/feature/home/presentation/view/widgets/rating_best_seller.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -18,7 +18,7 @@ class BestSellerItem extends StatelessWidget {
         height: 120,
         child: Row(
           children: [
-            const FeatureImageItem(),
+            const CustomBookImage(),
             const SizedBox(width: 30),
             Expanded(
               child: Column(

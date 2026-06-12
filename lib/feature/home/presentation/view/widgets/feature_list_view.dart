@@ -1,4 +1,4 @@
-import 'package:bookly_app_with_clean_architure/feature/home/presentation/view/widgets/feature_image_item.dart';
+import 'package:bookly_app_with_clean_architure/feature/home/presentation/view/widgets/custom_book_image.dart';
 import 'package:flutter/material.dart';
 
 class FeatureListView extends StatefulWidget {
@@ -45,7 +45,7 @@ class _FeatureListViewState extends State<FeatureListView> {
               vertical: paddingValue.clamp(0.0, 15.0),
               horizontal: 12,
             ),
-            child: const FeatureImageItem(),
+            child: const CustomBookImage(),
           );
         },
       ),
