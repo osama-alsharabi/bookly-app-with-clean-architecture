@@ -1,7 +1,5 @@
-import 'package:bookly_app_with_clean_architure/feature/home/presentation/view/home_view.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_navigation/get_navigation.dart';
-import 'package:get/utils.dart';
+import 'package:go_router/go_router.dart';
 
 class SlidingTextAnimation extends StatefulWidget {
   const SlidingTextAnimation({super.key});
@@ -17,18 +15,16 @@ class _SlidingTextAnimationState extends State<SlidingTextAnimation>
 
   @override
   void initState() {
-    super.initState();
     initAnimation();
     navigateToHomeView();
+    super.initState();
   }
 
   void navigateToHomeView() {
     Future.delayed(const Duration(milliseconds: 800), () {
-      Get.to(
-        const HomeView(),
-        transition: Transition.zoom,
-        duration: const Duration(milliseconds: 500),
-      );
+      if (mounted) {
+        context.go("/homeView");
+      }
     });
   }
 
@@ -46,8 +42,9 @@ class _SlidingTextAnimationState extends State<SlidingTextAnimation>
 
   @override
   void dispose() {
-    super.dispose();
     animationController.dispose();
+
+    super.dispose();
   }
 
   @override
