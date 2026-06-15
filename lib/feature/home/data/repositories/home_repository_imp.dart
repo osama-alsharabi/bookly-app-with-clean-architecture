@@ -5,6 +5,7 @@ import 'package:bookly_app_with_clean_architure/feature/home/data/data_sources/h
 import 'package:bookly_app_with_clean_architure/feature/home/domain/entities/book_entity.dart';
 import 'package:bookly_app_with_clean_architure/feature/home/domain/repositories/home_repository.dart';
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 
 class HomeRepositoryImp extends HomeRepository {
   final HomeLocalDataSource homeLocalDataSource;
@@ -28,8 +29,12 @@ class HomeRepositoryImp extends HomeRepository {
         data: books,
       );
       return right(books);
+    } on DioException catch (e) {
+      return left(ServerFailure.fromDioError(e));
     } catch (e) {
-      return left(Failure());
+      return left(
+        ServerFailure(message: "there was an error, please try later"),
+      );
     }
   }
 
@@ -48,8 +53,12 @@ class HomeRepositoryImp extends HomeRepository {
         data: books,
       );
       return right(books);
+    } on DioException catch (e) {
+      return left(ServerFailure.fromDioError(e));
     } catch (e) {
-      return left(Failure());
+      return left(
+        ServerFailure(message: "there was an error, please try later"),
+      );
     }
   }
 }
