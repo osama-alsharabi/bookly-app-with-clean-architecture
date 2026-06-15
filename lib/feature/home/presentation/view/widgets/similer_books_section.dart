@@ -1,5 +1,5 @@
 import 'package:bookly_app_with_clean_architure/core/utils/app_style.dart';
-import 'package:bookly_app_with_clean_architure/feature/home/presentation/view/widgets/custom_book_image.dart';
+import 'package:bookly_app_with_clean_architure/feature/home/presentation/view/widgets/similer_books_list_view_bloc_builder.dart';
 import 'package:flutter/material.dart';
 
 class SimilerBooksSection extends StatelessWidget {
@@ -14,25 +14,12 @@ class SimilerBooksSection extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 30.0),
           child: Text(
             "You can also like",
+
             style: AppStyle.textStyle14SimeBold.copyWith(color: Colors.white),
           ),
         ),
         const SizedBox(height: 16),
-        SizedBox(
-          height: 112,
-          child: ListView.builder(
-            padding: EdgeInsets.zero,
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (context, index) {
-              return const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 5.0),
-                child: CustomBookImage(
-                  image: "https://pngimg.com/uploads/book/book_PNG2111.png",
-                ),
-              );
-            },
-          ),
-        ),
+        const SimilerBooksListViewBlocBuilder(),
         const SizedBox(height: 40),
       ],
     );
