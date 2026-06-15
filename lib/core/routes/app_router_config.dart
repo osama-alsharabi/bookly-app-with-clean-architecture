@@ -1,3 +1,4 @@
+import 'package:bookly_app_with_clean_architure/feature/home/domain/entities/book_entity.dart';
 import 'package:bookly_app_with_clean_architure/feature/home/presentation/view/book_details_view.dart';
 import 'package:bookly_app_with_clean_architure/feature/home/presentation/view/home_view.dart';
 import 'package:bookly_app_with_clean_architure/feature/splash/presentation/view/splash_view.dart';
@@ -17,7 +18,8 @@ abstract class AppRouterConfig {
       GoRoute(
         name: bookDetailViewRouter,
         path: '/$bookDetailViewRouter',
-        builder: (context, state) => const BookDetailsView(),
+        builder: (context, state) =>
+            BookDetailsView(book: state.extra as BookEntity),
       ),
     ],
   );
