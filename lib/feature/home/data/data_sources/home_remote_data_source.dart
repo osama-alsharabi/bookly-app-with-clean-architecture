@@ -1,6 +1,6 @@
-import 'package:bookly_app_with_clean_architure/feature/home/domain/entities/book_entity.dart';
+import 'package:bookly_app_with_clean_architure/feature/home/data/model/book_model/book_model.dart';
 
 abstract class HomeRemoteDataSource {
-  Future<List<BookEntity>> fetchFeaturedBooks();
-  Future<List<BookEntity>> fetchNewestBooks();
+  Future<List<BookModel>> fetchFeaturedBooks();
+  Future<List<BookModel>> fetchNewestBooks();
 }

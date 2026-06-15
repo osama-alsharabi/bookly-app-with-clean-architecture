@@ -6,7 +6,7 @@ import 'reading_modes.dart';
 class VolumeInfo {
   String? title;
   String? subtitle;
-  List<String>? authors;
+  List<dynamic>? authors;
   String? publisher;
   String? publishedDate;
   String? description;
@@ -14,7 +14,7 @@ class VolumeInfo {
   ReadingModes? readingModes;
   num? pageCount;
   String? printType;
-  List<String>? categories;
+  List<dynamic>? categories;
   String? maturityRating;
   bool? allowAnonLogging;
   String? contentVersion;
@@ -51,7 +51,7 @@ class VolumeInfo {
   factory VolumeInfo.fromJson(Map<String, dynamic> json) => VolumeInfo(
     title: json['title'] as String?,
     subtitle: json['subtitle'] as String?,
-    authors: json['authors'] as List<String>?,
+    authors: json['authors'] as List<dynamic>?,
     publisher: json['publisher'] as String?,
     publishedDate: json['publishedDate'] as String?,
     description: json['description'] as String?,
@@ -63,7 +63,7 @@ class VolumeInfo {
         : ReadingModes.fromJson(json['readingModes'] as Map<String, dynamic>),
     pageCount: json['pageCount'] as num?,
     printType: json['printType'] as String?,
-    categories: json['categories'] as List<String>?,
+    categories: json['categories'] as List<dynamic>?,
     maturityRating: json['maturityRating'] as String?,
     allowAnonLogging: json['allowAnonLogging'] as bool?,
     contentVersion: json['contentVersion'] as String?,
