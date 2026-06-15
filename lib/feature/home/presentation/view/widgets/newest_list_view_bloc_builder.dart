@@ -12,7 +12,9 @@ class NewestListViewBlocBuilder extends StatelessWidget {
     return BlocBuilder<FetchNewestBooksCubit, FetchNewestBooksState>(
       builder: (context, state) {
         if (state is FetchNewestBooksSuccess) {
-          return const BestSellerListView();
+          return  BestSellerListView(
+            books: state.books,
+          );
         } else if (state is FetchNewestBooksFailure) {
           return SliverToBoxAdapter(child: Text(state.errorMessage));
         } else {

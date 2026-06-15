@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 
 class RatingBestSeller extends StatelessWidget {
   final MainAxisAlignment mainAxisAlignment;
+  final num rateingNumbers;
   const RatingBestSeller({
     super.key,
     this.mainAxisAlignment = MainAxisAlignment.start,
+    this.rateingNumbers = 0,
   });
 
   @override
@@ -20,7 +22,7 @@ class RatingBestSeller extends StatelessWidget {
           style: AppStyle.textStyle16Medium.copyWith(color: Colors.white),
         ),
         const SizedBox(width: 5),
-        const Text("(255)", style: AppStyle.textStyle14Regular),
+        Text("($rateingNumbers)", style: AppStyle.textStyle14Regular),
       ],
     );
   }
