@@ -26,7 +26,9 @@ class SimilerBooksSection extends StatelessWidget {
             itemBuilder: (context, index) {
               return const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 5.0),
-                child: CustomBookImage(),
+                child: CustomBookImage(
+                  image: "https://pngimg.com/uploads/book/book_PNG2111.png",
+                ),
               );
             },
           ),

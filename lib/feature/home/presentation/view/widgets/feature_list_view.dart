@@ -1,8 +1,10 @@
+import 'package:bookly_app_with_clean_architure/feature/home/domain/entities/book_entity.dart';
 import 'package:bookly_app_with_clean_architure/feature/home/presentation/view/widgets/custom_book_image.dart';
 import 'package:flutter/material.dart';
 
 class FeatureListView extends StatefulWidget {
-  const FeatureListView({super.key});
+  final List<BookEntity> books;
+  const FeatureListView({super.key, required this.books});
 
   @override
   State<FeatureListView> createState() => _FeatureListViewState();
@@ -34,7 +36,7 @@ class _FeatureListViewState extends State<FeatureListView> {
     return SizedBox(
       height: MediaQuery.sizeOf(context).height * 0.3,
       child: PageView.builder(
-        itemCount: 10,
+        itemCount: widget.books.length,
         padEnds: false,
         controller: _pageController,
         itemBuilder: (context, index) {
@@ -45,7 +47,7 @@ class _FeatureListViewState extends State<FeatureListView> {
               vertical: paddingValue.clamp(0.0, 15.0),
               horizontal: 12,
             ),
-            child: const CustomBookImage(),
+            child: CustomBookImage(image: widget.books[index].image),
           );
         },
       ),

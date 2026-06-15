@@ -18,7 +18,9 @@ class BestSellerItem extends StatelessWidget {
         height: 120,
         child: Row(
           children: [
-            const CustomBookImage(),
+            const CustomBookImage(
+              image: "https://pngimg.com/uploads/book/book_PNG2111.png",
+            ),
             const SizedBox(width: 30),
             Expanded(
               child: Column(
