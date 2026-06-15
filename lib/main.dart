@@ -6,8 +6,8 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() async {
-  await setupServiceLocator();
   await dotenv.load();
+  await setupServiceLocator();
   await hiveInit();
   runApp(const BooklyApp());
 }

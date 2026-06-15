@@ -10,23 +10,28 @@ import 'package:get_it/get_it.dart';
 GetIt getIt = GetIt.instance;
 
 setupServiceLocator() {
-  getIt.registerSingleton<FetchFeaturedBooksCubit>(
-    FetchFeaturedBooksCubit(
-      featuredBooksUseCase: getIt<FetchFeaturedBooksUseCase>(),
-    ),
+   getIt.registerSingleton<ApiService>(ApiService(dio: Dio()));
+
+ 
+  getIt.registerSingleton<HomeRemoteDataSourceImp>(
+    HomeRemoteDataSourceImp(apiService: getIt.get<ApiService>()),
   );
-  getIt.registerSingleton<FetchFeaturedBooksUseCase>(
-    FetchFeaturedBooksUseCase(homeRepository: getIt.get<HomeRepositoryImp>()),
-  );
-  getIt.registerSingleton<HomeRepositoryImp>(
+  getIt.registerSingleton<HomeLocalDataSourceImp>(HomeLocalDataSourceImp());
+   getIt.registerSingleton<HomeRepositoryImp>(
     HomeRepositoryImp(
       homeRemoteDataSource: getIt.get<HomeRemoteDataSourceImp>(),
       homeLocalDataSource: getIt.get<HomeLocalDataSourceImp>(),
     ),
   );
-  getIt.registerSingleton<HomeRemoteDataSourceImp>(
-    HomeRemoteDataSourceImp(apiService: getIt.get<ApiService>()),
+   getIt.registerSingleton<FetchFeaturedBooksUseCase>(
+    FetchFeaturedBooksUseCase(homeRepository: getIt.get<HomeRepositoryImp>()),
   );
-  getIt.registerSingleton<HomeLocalDataSourceImp>(HomeLocalDataSourceImp());
-  getIt.registerSingleton<ApiService>(ApiService(dio: Dio()));
+  getIt.registerSingleton<FetchFeaturedBooksCubit>(
+    FetchFeaturedBooksCubit(
+      featuredBooksUseCase: getIt<FetchFeaturedBooksUseCase>(),
+    ),
+  );
+
+
+  
 }
