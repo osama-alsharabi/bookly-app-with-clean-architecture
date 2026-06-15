@@ -1,0 +1,55 @@
+import 'package:bookly_app_with_clean_architure/core/errors/failure.dart';
+import 'package:bookly_app_with_clean_architure/core/utils/app_const.dart';
+import 'package:bookly_app_with_clean_architure/feature/home/data/data_sources/home_local_data_source.dart';
+import 'package:bookly_app_with_clean_architure/feature/home/data/data_sources/home_remote_data_source.dart';
+import 'package:bookly_app_with_clean_architure/feature/home/domain/entities/book_entity.dart';
+import 'package:bookly_app_with_clean_architure/feature/home/domain/repositories/home_repository.dart';
+import 'package:dartz/dartz.dart';
+
+class HomeRepositoryImp extends HomeRepository {
+  final HomeLocalDataSource homeLocalDataSource;
+  final HomeRemoteDataSource homeRemoteDataSource;
+
+  HomeRepositoryImp({
+    required this.homeLocalDataSource,
+    required this.homeRemoteDataSource,
+  });
+  @override
+  Future<Either<Failure, List<BookEntity>>> fetchFeaturedBooks() async {
+    List<BookEntity> books;
+    try {
+      books = homeLocalDataSource.getFeaturedBooks();
+      if (books.isNotEmpty) {
+        return right(books);
+      }
+      books = await homeRemoteDataSource.fetchFeaturedBooks();
+      homeLocalDataSource.cacheBooks(
+        boxName: AppConst.featuredBooksHiveBox,
+        data: books,
+      );
+      return right(books);
+    } catch (e) {
+      return left(Failure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<BookEntity>>> fetchNewestBooks() async {
+    List<BookEntity> books;
+    try {
+      books = homeLocalDataSource.getNewestBooks();
+      if (books.isNotEmpty) {
+        return right(books);
+      }
+      books = await homeRemoteDataSource.fetchNewestBooks();
+
+      homeLocalDataSource.cacheBooks(
+        boxName: AppConst.newestBooksHiveBox,
+        data: books,
+      );
+      return right(books);
+    } catch (e) {
+      return left(Failure());
+    }
+  }
+}
