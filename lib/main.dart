@@ -1,3 +1,4 @@
+import 'package:bookly_app_with_clean_architure/core/helpers/hive_init.dart';
 import 'package:bookly_app_with_clean_architure/core/routes/app_router_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -5,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 void main() async {
   await dotenv.load();
+  await hiveInit();
   runApp(const BooklyApp());
 }
 
