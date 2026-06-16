@@ -14,8 +14,12 @@ class FetchFeaturedBooksCubit extends Cubit<FetchFeaturedBooksState>
   final FetchFeaturedBooksUseCase featuredBooksUseCase;
 
   Future<void> fetchFeaturedBooks({FetchFeaturedBooksParam? param}) async {
-    if (param?.paginationNumber == 0) {
-      safeEmit(FetchFeaturedBooksLoading());
+    int pageNumber = param?.paginationNumber ?? 0;
+    if (pageNumber == 0) {
+      await Future.delayed(
+        const Duration(milliseconds: 1500),
+        () => safeEmit(FetchFeaturedBooksLoading()),
+      );
     } else {
       safeEmit(FetchFeaturedBooksPaginationLoading());
     }
