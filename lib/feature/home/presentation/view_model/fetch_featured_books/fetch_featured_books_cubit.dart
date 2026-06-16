@@ -14,7 +14,11 @@ class FetchFeaturedBooksCubit extends Cubit<FetchFeaturedBooksState>
   final FetchFeaturedBooksUseCase featuredBooksUseCase;
 
   Future<void> fetchFeaturedBooks({FetchFeaturedBooksParam? param}) async {
-    safeEmit(FetchFeaturedBooksLoading());
+    if (param?.paginationNumber == 0) {
+      safeEmit(FetchFeaturedBooksLoading());
+    } else {
+      safeEmit(FetchFeaturedBooksPaginationLoading());
+    }
     Either<Failure, List<BookEntity>> result = await featuredBooksUseCase.call(
       param ?? FetchFeaturedBooksParam(),
     );

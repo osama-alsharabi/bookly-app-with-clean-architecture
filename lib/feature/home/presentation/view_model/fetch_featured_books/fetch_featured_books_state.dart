@@ -6,6 +6,9 @@ final class FetchFeaturedBooksInitial extends FetchFeaturedBooksState {}
 
 final class FetchFeaturedBooksLoading extends FetchFeaturedBooksState {}
 
+final class FetchFeaturedBooksPaginationLoading
+    extends FetchFeaturedBooksState {}
+
 final class FetchFeaturedBooksSuccess extends FetchFeaturedBooksState {
   final List<BookEntity> books;
 

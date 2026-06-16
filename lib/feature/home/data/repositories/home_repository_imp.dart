@@ -22,7 +22,7 @@ class HomeRepositoryImp extends HomeRepository {
   }) async {
     List<BookEntity> books;
     try {
-      books = homeLocalDataSource.getFeaturedBooks();
+      books = homeLocalDataSource.getFeaturedBooks(param: fetchParam);
       if (books.isNotEmpty) {
         return right(books);
       }
