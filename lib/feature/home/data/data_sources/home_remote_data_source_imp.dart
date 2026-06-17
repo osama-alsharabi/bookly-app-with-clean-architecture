@@ -20,8 +20,11 @@ class HomeRemoteDataSourceImp extends HomeRemoteDataSource {
     return book;
   }
 
-  List<BookModel> getBooks(Map<String, dynamic> data) {
-    return (data["items"] as List).map((e) => BookModel.fromJson(e)).toList();
+  List<BookModel> getBooks(Map<String, dynamic>? data) {
+    if (data?["items"] == null) {
+      return [];
+    }
+    return (data!["items"] as List).map((e) => BookModel.fromJson(e)).toList();
   }
 
   @override
