@@ -6,6 +6,8 @@ final class FetchNewestBooksInitial extends FetchNewestBooksState {}
 
 final class FetchNewestBooksLoading extends FetchNewestBooksState {}
 
+final class FetchNewestBooksPaginationLoading extends FetchNewestBooksState {}
+
 final class FetchNewestBooksSuccess extends FetchNewestBooksState {
   final List<BookEntity> books;
 

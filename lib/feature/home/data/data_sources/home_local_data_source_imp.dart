@@ -39,9 +39,7 @@ class HomeLocalDataSourceImp extends HomeLocalDataSource {
     if (startIndex >= length) {
       return [];
     }
-    if (endIndex > length) {
-      endIndex = length;
-    }
-    return data.values.toList().sublist(startIndex, endIndex);
+    final safeEndIndex = endIndex > length ? length : endIndex;
+    return data.values.toList().sublist(startIndex, safeEndIndex);
   }
 }

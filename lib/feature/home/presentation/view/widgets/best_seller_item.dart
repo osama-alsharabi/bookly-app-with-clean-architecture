@@ -14,7 +14,7 @@ class BestSellerItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.pushNamed(AppRouterConfig.bookDetailViewRouter , extra: book);
+        context.pushNamed(AppRouterConfig.bookDetailViewRouter, extra: book);
       },
       child: SizedBox(
         height: 120,
@@ -38,6 +38,8 @@ class BestSellerItem extends StatelessWidget {
                   const SizedBox(height: 3),
                   Text(
                     book.author,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                     style: AppStyle.textStyle14Medium.copyWith(
                       color: const Color.fromARGB(255, 168, 164, 164),
                     ),

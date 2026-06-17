@@ -14,7 +14,12 @@ class FetchNewestBooksCubit extends Cubit<FetchNewestBooksState>
   final FetchNewsetBooksUseCase fetchNewsetBooksUseCase;
 
   Future<void> fetchNewsetBooks({FetchNewestBooksParam? param}) async {
-    safeEmit(FetchNewestBooksLoading());
+    int nextPage = param?.pageNumber ?? 0;
+    if (nextPage == 0) {
+      safeEmit(FetchNewestBooksLoading());
+    } else {
+      safeEmit(FetchNewestBooksPaginationLoading());
+    }
     Either<Failure, List<BookEntity>> result = await fetchNewsetBooksUseCase
         .call(param);
     result.fold(
