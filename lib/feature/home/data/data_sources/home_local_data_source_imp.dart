@@ -13,7 +13,7 @@ class HomeLocalDataSourceImp extends HomeLocalDataSource {
     if (length > 150) {
       List<dynamic> deletedBooks = box.keys.take(50).toList();
       box.deleteAll(deletedBooks);
-    } 
+    }
     box.addAll(data);
   }
 
@@ -33,6 +33,15 @@ class HomeLocalDataSourceImp extends HomeLocalDataSource {
   @override
   List<BookEntity> getNewestBooks({required FetchNewestBooksParam param}) {
     final data = Hive.box<BookEntity>(AppConst.newestBooksHiveBox);
-    return data.values.toList();
+    int startIndex = param.pageNumber * 10;
+    int endIndex = (param.pageNumber + 1) * 10;
+    int length = data.values.length;
+    if (startIndex >= length) {
+      return [];
+    }
+    if (endIndex > length) {
+      endIndex = length;
+    }
+    return data.values.toList().sublist(startIndex, endIndex);
   }
 }

@@ -15,6 +15,8 @@ class FetchNewsetBooksUseCase
   Future<Either<Failure, List<BookEntity>>> call([
     FetchNewestBooksParam? param,
   ]) async {
-    return await homeRepository.fetchNewestBooks(fetchParam: param!);
+    return await homeRepository.fetchNewestBooks(
+      fetchParam: param ?? FetchNewestBooksParam(),
+    );
   }
 }

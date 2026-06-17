@@ -25,8 +25,13 @@ class HomeRemoteDataSourceImp extends HomeRemoteDataSource {
   }
 
   @override
-  Future<List<BookModel>> fetchNewestBooks({required FetchNewestBooksParam fetchParam}) async {
-    var books = await apiService.get(endPoint: "volumes?q=programming");
+  Future<List<BookModel>> fetchNewestBooks({
+    required FetchNewestBooksParam fetchParam,
+  }) async {
+    var books = await apiService.get(
+      endPoint:
+          "volumes?q=programming&startIndex=${fetchParam.pageNumber * 10}",
+    );
     List<BookModel> book = getBooks(books);
     return book;
   }
