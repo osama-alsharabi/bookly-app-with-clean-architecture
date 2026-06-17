@@ -16,6 +16,7 @@ class NewestListViewBlocBuilder extends StatefulWidget {
 
 class _NewestListViewBlocBuilderState extends State<NewestListViewBlocBuilder> {
   List<BookEntity> books = [];
+  bool isloadingPagination = false;
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<FetchNewestBooksCubit, FetchNewestBooksState>(
@@ -23,11 +24,19 @@ class _NewestListViewBlocBuilderState extends State<NewestListViewBlocBuilder> {
         if (state is FetchNewestBooksSuccess) {
           books.addAll(state.books);
         }
+        if (state is FetchNewestBooksPaginationLoading) {
+          isloadingPagination = true;
+        } else {
+          isloadingPagination = false;
+        }
       },
       builder: (context, state) {
         if (state is FetchNewestBooksSuccess ||
             state is FetchNewestBooksPaginationLoading) {
-          return BestSellerListView(books: books);
+          return BestSellerListView(
+            books: books,
+            isLoadingPagination: isloadingPagination,
+          );
         } else if (state is FetchNewestBooksFailure) {
           return SliverToBoxAdapter(child: Text(state.errorMessage));
         } else {

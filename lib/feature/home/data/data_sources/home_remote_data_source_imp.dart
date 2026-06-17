@@ -24,7 +24,7 @@ class HomeRemoteDataSourceImp extends HomeRemoteDataSource {
     if (data?["items"] == null) {
       return [];
     }
-    return (data!["items"] as List).map((e) => BookModel.fromJson(e)).toList();
+    return (data?["items"] as List).map((e) => BookModel.fromJson(e)).toList();
   }
 
   @override

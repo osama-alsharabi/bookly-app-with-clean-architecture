@@ -23,19 +23,19 @@ class _HomeViewBodyState extends State<HomeViewBody> {
     super.initState();
     isLoadingPage = false;
     newestController = ScrollController();
-    newestController.addListener(() {
-      fetchNewestBooksPagination();
+    newestController.addListener(() async {
+      await fetchNewestBooksPagination();
     });
   }
 
-  void fetchNewestBooksPagination() async {
+  Future<void> fetchNewestBooksPagination() async {
     if (newestController.position.pixels >=
             newestController.position.maxScrollExtent * 0.7 &&
         !isLoadingPage) {
       isLoadingPage = true;
       await BlocProvider.of<FetchNewestBooksCubit>(
         context,
-      ).fetchNewsetBooks(param: FetchNewestBooksParam(pageNumber: nextPage++));
+      ).fetchNewsetBooks(param: FetchNewestBooksParam(pageNumber: ++nextPage));
       isLoadingPage = false;
     }
   }
