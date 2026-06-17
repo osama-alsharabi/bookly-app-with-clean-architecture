@@ -1,5 +1,6 @@
 import 'package:bookly_app_with_clean_architure/feature/home/domain/entities/book_entity.dart';
 import 'package:bookly_app_with_clean_architure/feature/home/presentation/view/widgets/best_seller_list_view.dart';
+import 'package:bookly_app_with_clean_architure/feature/home/presentation/view/widgets/newest_books_list_view_loading_indecator.dart';
 import 'package:bookly_app_with_clean_architure/feature/home/presentation/view_model/fetch_newest_books/fetch_newest_books_cubit.dart';
 import 'package:bookly_app_with_clean_architure/feature/home/presentation/view_model/fetch_newest_books/fetch_newest_books_state.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +32,7 @@ class _NewestListViewBlocBuilderState extends State<NewestListViewBlocBuilder> {
           return SliverToBoxAdapter(child: Text(state.errorMessage));
         } else {
           return const SliverToBoxAdapter(
-            child: Center(child: CircularProgressIndicator()),
+            child: NewestBooksListViewLoadingIndecator(),
           );
         }
       },

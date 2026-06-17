@@ -16,7 +16,10 @@ class FetchNewestBooksCubit extends Cubit<FetchNewestBooksState>
   Future<void> fetchNewsetBooks({FetchNewestBooksParam? param}) async {
     int nextPage = param?.pageNumber ?? 0;
     if (nextPage == 0) {
-      safeEmit(FetchNewestBooksLoading());
+      await Future.delayed(
+        const Duration(milliseconds: 2500),
+        () => safeEmit(FetchNewestBooksLoading()),
+      );
     } else {
       safeEmit(FetchNewestBooksPaginationLoading());
     }
