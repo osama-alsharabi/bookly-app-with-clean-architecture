@@ -2,6 +2,7 @@ import 'package:bookly_app_with_clean_architure/core/services/api_service.dart';
 import 'package:bookly_app_with_clean_architure/feature/home/data/data_sources/home_remote_data_source.dart';
 import 'package:bookly_app_with_clean_architure/feature/home/data/model/book_model/book_model.dart';
 import 'package:bookly_app_with_clean_architure/feature/home/domain/use_cases/params/fetch_featured_books_param.dart';
+import 'package:bookly_app_with_clean_architure/feature/home/domain/use_cases/params/fetch_newest_books_param.dart';
 
 class HomeRemoteDataSourceImp extends HomeRemoteDataSource {
   final ApiService apiService;
@@ -24,7 +25,7 @@ class HomeRemoteDataSourceImp extends HomeRemoteDataSource {
   }
 
   @override
-  Future<List<BookModel>> fetchNewestBooks() async {
+  Future<List<BookModel>> fetchNewestBooks({required FetchNewestBooksParam fetchParam}) async {
     var books = await apiService.get(endPoint: "volumes?q=programming");
     List<BookModel> book = getBooks(books);
     return book;

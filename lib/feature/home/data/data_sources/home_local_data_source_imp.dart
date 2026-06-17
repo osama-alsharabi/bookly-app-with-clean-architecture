@@ -2,6 +2,7 @@ import 'package:bookly_app_with_clean_architure/core/utils/app_const.dart';
 import 'package:bookly_app_with_clean_architure/feature/home/data/data_sources/home_local_data_source.dart';
 import 'package:bookly_app_with_clean_architure/feature/home/domain/entities/book_entity.dart';
 import 'package:bookly_app_with_clean_architure/feature/home/domain/use_cases/params/fetch_featured_books_param.dart';
+import 'package:bookly_app_with_clean_architure/feature/home/domain/use_cases/params/fetch_newest_books_param.dart';
 import 'package:hive/hive.dart';
 
 class HomeLocalDataSourceImp extends HomeLocalDataSource {
@@ -30,7 +31,7 @@ class HomeLocalDataSourceImp extends HomeLocalDataSource {
   }
 
   @override
-  List<BookEntity> getNewestBooks() {
+  List<BookEntity> getNewestBooks({required FetchNewestBooksParam param}) {
     final data = Hive.box<BookEntity>(AppConst.newestBooksHiveBox);
     return data.values.toList();
   }

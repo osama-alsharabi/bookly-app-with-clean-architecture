@@ -5,6 +5,7 @@ import 'package:bookly_app_with_clean_architure/feature/home/data/data_sources/h
 import 'package:bookly_app_with_clean_architure/feature/home/domain/entities/book_entity.dart';
 import 'package:bookly_app_with_clean_architure/feature/home/domain/use_cases/params/fetch_featured_books_param.dart';
 import 'package:bookly_app_with_clean_architure/feature/home/domain/repositories/home_repository.dart';
+import 'package:bookly_app_with_clean_architure/feature/home/domain/use_cases/params/fetch_newest_books_param.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
@@ -44,14 +45,18 @@ class HomeRepositoryImp extends HomeRepository {
   }
 
   @override
-  Future<Either<Failure, List<BookEntity>>> fetchNewestBooks() async {
+  Future<Either<Failure, List<BookEntity>>> fetchNewestBooks({
+    required FetchNewestBooksParam fetchParam,
+  }) async {
     List<BookEntity> books;
     try {
-      books = homeLocalDataSource.getNewestBooks();
+      books = homeLocalDataSource.getNewestBooks(param: fetchParam);
       if (books.isNotEmpty) {
         return right(books);
       }
-      books = await homeRemoteDataSource.fetchNewestBooks();
+      books = await homeRemoteDataSource.fetchNewestBooks(
+        fetchParam: fetchParam,
+      );
 
       homeLocalDataSource.cacheBooks(
         boxName: AppConst.newestBooksHiveBox,
