@@ -30,7 +30,8 @@ class _HomeViewBodyState extends State<HomeViewBody> {
 
   void fetchNewestBooksPagination() async {
     if (newestController.position.pixels >=
-        newestController.position.maxScrollExtent * 0.7) {
+            newestController.position.maxScrollExtent * 0.7 &&
+        !isLoadingPage) {
       isLoadingPage = true;
       await BlocProvider.of<FetchNewestBooksCubit>(
         context,
