@@ -143,9 +143,9 @@ This project uses the **Google Books API** to retrieve books and support paginat
 
 > Add screenshots here.
 
-| Home | Search | Details |
-|------|---------|---------|
-| Image | Image | Image |
+| Home | Details |
+|------|---------|
+| ![](assets/screenshots/home.png) | ![](assets/screenshots/details.png) |
 
 ---
 
