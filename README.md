@@ -18,6 +18,7 @@ This project was created to practice:
 - State Management using Cubit (Bloc)
 - API Integration with Dio
 - Error Handling
+- Routing (go_router)
 - Functional Programming using Either
 
 ---
