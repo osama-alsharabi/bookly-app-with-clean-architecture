@@ -12,7 +12,7 @@ class FetchNewestBooksCubit extends Cubit<FetchNewestBooksState>
   FetchNewestBooksCubit({required this.fetchNewsetBooksUseCase})
     : super(FetchNewestBooksInitial());
   final FetchNewsetBooksUseCase fetchNewsetBooksUseCase;
-
+  bool isReachedLastBook = false;
   Future<void> fetchNewsetBooks({FetchNewestBooksParam? param}) async {
     int nextPage = param?.pageNumber ?? 0;
     if (nextPage == 0) {
@@ -20,13 +20,19 @@ class FetchNewestBooksCubit extends Cubit<FetchNewestBooksState>
     } else {
       safeEmit(FetchNewestBooksPaginationLoading());
     }
-    await Future.delayed(const Duration(milliseconds: 500));
-    Either<Failure, List<BookEntity>> result = await fetchNewsetBooksUseCase
-        .call(param);
-    result.fold(
-      (failure) =>
-          safeEmit(FetchNewestBooksFailure(errorMessage: failure.message)),
-      (books) => safeEmit(FetchNewestBooksSuccess(books: books)),
-    );
+    if (!isReachedLastBook) {
+      await Future.delayed(const Duration(milliseconds: 500));
+      Either<Failure, List<BookEntity>> result = await fetchNewsetBooksUseCase
+          .call(param);
+      result.fold(
+        (failure) =>
+            safeEmit(FetchNewestBooksFailure(errorMessage: failure.message)),
+        (books) {
+          safeEmit(FetchNewestBooksSuccess(books: books));
+        },
+      );
+    } else {
+      safeEmit(FetchNewestBooksHasReachedEnd());
+    }
   }
 }

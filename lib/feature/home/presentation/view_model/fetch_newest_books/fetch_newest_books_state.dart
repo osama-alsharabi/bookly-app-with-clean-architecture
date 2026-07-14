@@ -8,6 +8,8 @@ final class FetchNewestBooksLoading extends FetchNewestBooksState {}
 
 final class FetchNewestBooksPaginationLoading extends FetchNewestBooksState {}
 
+final class FetchNewestBooksHasReachedEnd extends FetchNewestBooksState {}
+
 final class FetchNewestBooksSuccess extends FetchNewestBooksState {
   final List<BookEntity> books;
 
