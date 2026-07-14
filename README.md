@@ -34,7 +34,6 @@ lib/
         ├── data/
         │   ├── data_sources/
         │   ├── models/
-        │   ├── repositories/
         │   └── implementations/
         │
         ├── domain/
